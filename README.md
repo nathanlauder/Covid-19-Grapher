@@ -6,3 +6,5 @@
  
  The statistics were obtained from Eli Blaney's GitHub Seir Repo, where I read in the files to create 2-D lists to
  make the graph.
+
+The graphics.py module was provided by John Zelle in his Intoduction to Computer Programming book Python Programming.

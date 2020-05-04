@@ -39,7 +39,6 @@ def getCases():
 def makeGraph():
     win = GraphWin("Covid-19 Graph", 1000, 800)
     win.setCoords(0, 0, 1000, 2000000)
-    print(1800000-100000)
     # set the title and labels
     title = Text(Point(500, 1950000), "COVID-19 CASES BY DAY")
     title.setSize(24)
@@ -59,6 +58,8 @@ def makeGraph():
     deathLabel = Text(Point(550, 1900000), "Confirmed Deaths")
     deathLabel.setTextColor("red")
     deathLabel.draw(win)
+    #cap = Line(Point(75, 270337), Point(950, 270337))
+    #cap.draw(win)
 
     # labeling the y axis with numbers
     yCount = 150000
@@ -73,16 +74,16 @@ def makeGraph():
             numLabel = Text(Point(50, yCount), str(num) + " m")
             numLabel.draw(win)
         yCount+=96550
-        caseCount+=109500
+        caseCount+=200000
 
     # labeling the x axis in days after Dec 31 2019
-    days = 1
+    days = 0
     xCount = 80
-    while xCount < 945:
+    while xCount < 950:
         dayLabel = Text(Point(xCount, 80000), str(days))
         dayLabel.draw(win)
-        days += 1
-        xCount += 18
+        days += 5
+        xCount += 34
     cases = getCases()
     # run the line for the confirmed cases
     currentX = 100
@@ -93,15 +94,14 @@ def makeGraph():
     currentXdeath = 75
     for i in range(len(cases)):
         if i != (len(cases)-1):
-            currentY = 110550+int((cases[i][3])/1.1) # have to divide by yCount otherwise it increments in pixels
-            nextX = currentX + 8.3
-            nextY = 110550+int((cases[i+1][3])/1.1)
+            currentY = 100550+int((cases[i][3])/2.03) # have to divide by yCount otherwise it increments in pixels
+            nextX = currentX + 7
+            nextY = 100550+int((cases[i+1][3])/2.03)
 
-            currentYdeath = 110550 + int(
-                (cases[i][2]) / 1.1)  # have to divide by yCount otherwise it increments in pixels
-            nextXdeath = currentXdeath + 8.3
-            nextYdeath = 110550 + int((cases[i + 1][2]) / 1.1)
-            #print(i)
+            currentYdeath = 100550 + int((cases[i][2]) / 1.5)  # have to divide by yCount otherwise it increments in pixels
+            nextXdeath = currentXdeath + 7
+            nextYdeath = 100550 + int((cases[i + 1][2]) / 1.5)
+
             line = Line(Point(currentX, currentY), Point(nextX, nextY))
             line.setFill('blue')
             line.draw(win)
@@ -112,8 +112,8 @@ def makeGraph():
             currentY = nextY
             currentXdeath = nextXdeath
             currentYdeath = nextYdeath
-    print(cases[-1])
-    y = win.getMouse()
-    print(y.getY())
+    #print(cases[-1])
+    #y = win.getMouse()
+    #print(y.getY())
     win.getMouse()
 makeGraph()
